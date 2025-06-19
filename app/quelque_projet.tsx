@@ -3,7 +3,6 @@
 import Image from "next/image";
 import useFetch from "@/hook/useFetch";
 import { useState, useEffect } from "react";
-import url_image from "@/utils/imageUrls";
 import Link from "next/link";
 
 export default function QuelqueProjets() {
@@ -63,7 +62,7 @@ export default function QuelqueProjets() {
                       <Image
                         width={5000}
                         height={5000}
-                        src={`${url_image}${post.image_projet}`}
+                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${post.image_projet}`}
                         alt=""
                         className="img-fluid"
                         loading="lazy"

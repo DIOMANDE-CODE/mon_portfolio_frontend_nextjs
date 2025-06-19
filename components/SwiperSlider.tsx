@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { useState, useEffect } from "react";
 import api from "@/utils/axios";
-import url_image from "@/utils/imageUrls";
 
 // Import Swiper styles
 import "swiper/css";
@@ -62,7 +61,7 @@ export default function SwiperSlider() {
               <Image
                 width={5000}
                 height={5000}
-                src={`${url_image}${categorie.image_categorie}`}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${categorie.image_categorie}`}
                 alt="Blog Image"
               />
               <div className="blog-post-content">

@@ -2,8 +2,6 @@
 import Image from "next/image";
 
 import { useState, useEffect } from "react";
-import url_image from "@/utils/imageUrls";
-
 import useFetch from "@/hook/useFetch";
 
 import Link from "next/link";
@@ -64,7 +62,7 @@ const TriCategorie = ({ id, setId }: Props) => {
                 <Image
                   width={5000}
                   height={5000}
-                  src={`${url_image}${projet.image_projet}`}
+                  src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${projet.image_projet}`}
                   alt=""
                   className="img-fluid"
                   priority
@@ -94,7 +92,7 @@ const TriCategorie = ({ id, setId }: Props) => {
                   <Image
                     width={5000}
                     height={5000}
-                    src={`${url_image}${owner.photo_profil}`}
+                    src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${owner.photo_profil}`}
                     alt=""
                     className="img-fluid post-author-img flex-shrink-0"
                   />
@@ -221,7 +219,7 @@ const ListTravaux = () => {
                 <Image
                   width={5000}
                   height={5000}
-                  src={`${url_image}${projet.image_projet}`}
+                  src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${projet.image_projet}`}
                   alt=""
                   className="img-fluid"
                   priority
@@ -251,7 +249,7 @@ const ListTravaux = () => {
                   <Image
                     width={5000}
                     height={5000}
-                    src={`${url_image}${owner.photo_profil}`}
+                    src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${owner.photo_profil}`}
                     alt=""
                     className="img-fluid post-author-img flex-shrink-0"
                   />

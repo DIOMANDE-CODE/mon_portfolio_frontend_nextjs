@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import url_image from "@/utils/imageUrls";
 import useFetch from "@/hook/useFetch";
 
 export default function AuthorInfo() {
@@ -44,7 +43,7 @@ export default function AuthorInfo() {
               <Image
                 width={5000}
                 height={5000}
-                src={`${url_image}${author.photo_profil}`}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${author.photo_profil}`}
                 priority
                 alt="Author"
                 className="img-fluid rounded"

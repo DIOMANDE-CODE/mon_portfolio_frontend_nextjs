@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 // import "@/public/assets/css/visuel.css"
-import url_image from "@/utils/imageUrls";
 import { useState, useEffect } from "react";
 import useFetch from "@/hook/useFetch";
 
@@ -69,7 +68,7 @@ export default function Visuel() {
                     <Image
                       width={1000}
                       height={1000}
-                      src={`${url_image}${crea.image_visuel}`}
+                      src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${crea.image_visuel}`}
                       alt={crea.titre_visuel}
                       priority
                       className="img-fluid"
@@ -105,7 +104,7 @@ export default function Visuel() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <Image
-                  src={`${url_image}${selectedImage.image_visuel}`}
+                  src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${selectedImage.image_visuel}`}
                   alt={selectedImage.titre_visuel}
                   width={1000}
                   height={1000}

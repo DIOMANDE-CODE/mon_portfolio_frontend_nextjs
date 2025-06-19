@@ -1,4 +1,3 @@
-import url_image from "@/utils/imageUrls";
 import Image from "next/image";
 
 import { use } from "react";
@@ -69,7 +68,7 @@ export default function DetailProjet(props: {
                       <Image
                         width={5000}
                         height={5000}
-                        src={`${url_image}${detail.image_projet}`}
+                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${detail.image_projet}`}
                         alt={detail.titre_projet}
                         className="img-fluid"
                         loading="lazy"
@@ -97,7 +96,7 @@ export default function DetailProjet(props: {
                               <Image
                                 width={5000}
                                 height={5000}
-                                src={`${url_image}${proprio.photo_profil}`}
+                                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${proprio.photo_profil}`}
                                 alt="Author"
                                 className="author-img"
                               />
