@@ -110,7 +110,7 @@ const TriCategorie = ({ id, setId }: Props) => {
         ))}
     </>
   );
-}
+};
 
 const ListCategorie = ({ isVisible, setIsVisible, setId }: Props) => {
   interface Category {
@@ -171,7 +171,7 @@ const ListCategorie = ({ isVisible, setIsVisible, setId }: Props) => {
       </div>
     </>
   );
-}
+};
 const ListTravaux = () => {
   interface Categorie {
     id: number;
@@ -193,12 +193,12 @@ const ListTravaux = () => {
     proprietaire: Proprietaire[];
   }
 
-  const { data, error, loading } = useFetch("projet/list/")
+  const { data, error, loading } = useFetch("projet/list/");
   const [projets, setProjets] = useState<Travaux[]>([]);
 
   useEffect(() => {
-    if (data){
-      setProjets(data)
+    if (data) {
+      setProjets(data);
     }
   }, [data]);
 
@@ -213,7 +213,12 @@ const ListTravaux = () => {
             new Date(b.date_debut).getTime() - new Date(a.date_debut).getTime()
         )
         .map((projet) => (
-          <div className="col-lg-6" key={projet.id}>
+          <div
+            className="col-lg-6"
+            key={projet.id}
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <article>
               <div className="post-img">
                 <Image
@@ -231,7 +236,7 @@ const ListTravaux = () => {
                 ? [projet.categorie_projet]
                 : []
               ).map((cat) => (
-                <p className="post-category" key={cat.id}>
+                <p className="post-category" key={projet.id}>
                   {cat.nom_categorie}
                 </p>
               ))}
@@ -245,7 +250,7 @@ const ListTravaux = () => {
                 ? [projet.proprietaire]
                 : []
               ).map((owner) => (
-                <div className="d-flex align-items-center" key={owner.id}>
+                <div className="d-flex align-items-center" key={projet.id}>
                   <Image
                     width={5000}
                     height={5000}
@@ -267,7 +272,7 @@ const ListTravaux = () => {
         ))}
     </>
   );
-}
+};
 export default function Projets({}) {
   const [isVisible, setIsVisible] = useState(true);
   const [id, setId] = useState(0);

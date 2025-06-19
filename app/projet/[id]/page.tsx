@@ -92,7 +92,7 @@ export default function DetailProjet(props: {
                         <h1 className="title">{detail.titre_projet}</h1>
                         <div className="author-info">
                           {proprietaires.map((proprio) => (
-                            <div className="author-details" key={proprio.id}>
+                            <div className="author-details" key="auteur">
                               <Image
                                 width={5000}
                                 height={5000}
@@ -147,6 +147,7 @@ export default function DetailProjet(props: {
                                 href={detail.lien_facebook}
                                 className="facebook"
                                 target="_blank"
+                                title="Lien Facebook du projet"
                               >
                                 <i className="bi bi-facebook" />
                               </Link>
@@ -157,6 +158,7 @@ export default function DetailProjet(props: {
                                 href={detail.li}
                                 target="_blank"
                                 className="instagram"
+                                title="Lien Instagram du projet"
                               >
                                 <i className="bi bi-instagram" />
                               </Link>
@@ -167,6 +169,7 @@ export default function DetailProjet(props: {
                                 href={detail.lien_github}
                                 target="_blank"
                                 className="github"
+                                title="Lien Github du projet"
                               >
                                 <i className="bi bi-github" />
                               </a>
@@ -177,6 +180,7 @@ export default function DetailProjet(props: {
                                 href={detail.lien_drive}
                                 target="_blank"
                                 className="folder"
+                                title="Lien Drive du projet"
                               >
                                 <i className="bi bi-folder" />
                               </a>
@@ -187,6 +191,7 @@ export default function DetailProjet(props: {
                                 href={detail.lien_projet}
                                 target="_blank"
                                 className="link"
+                                title="Lien du projet"
                               >
                                 <i className="bi bi-link" />
                               </a>

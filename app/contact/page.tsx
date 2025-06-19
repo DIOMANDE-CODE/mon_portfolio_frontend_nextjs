@@ -154,7 +154,7 @@ export default function Contact() {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="Numéro de Téléphone"
+                          placeholder="Numéro WhatsApp"
                           value={numero_client}
                           onChange={(e) => setNumero(e.target.value)}
                           required
