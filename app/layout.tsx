@@ -56,9 +56,6 @@ export default function RootLayout({
         <meta name="description" content="" />
         <meta name="keywords" content="" />
 
-        <link rel="icon" href="/assets/img/favicon.png" />
-        <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
