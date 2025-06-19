@@ -38,6 +38,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "<Chez PYTH/>",
   description: "Portofolio de Diomande Droh Martial",
+  icons : {
+    icon: "/mon-nouveau-favicon.ico"
+  }
 };
 
 export default function RootLayout({
