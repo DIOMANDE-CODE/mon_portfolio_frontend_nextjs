@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 async function getProjet(id: string) {
-  const res = await fetch(`http://localhost:8000/projet/detail/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projet/detail/${id}`);
   if (!res.ok) notFound();
   else {
     return res.json();
