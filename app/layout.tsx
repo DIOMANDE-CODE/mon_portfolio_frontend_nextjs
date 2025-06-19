@@ -56,6 +56,8 @@ export default function RootLayout({
         <meta name="description" content="" />
         <meta name="keywords" content="" />
 
+        <link rel="icon" href="/mon-nouveau-favicon.ico" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
