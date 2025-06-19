@@ -30,6 +30,7 @@ export default function AuthorInfo() {
       setAuthorInfo(data)
     }
   }, [data]);
+  
 
   if (loading) return <div id="preloader"></div>;
   if (error) return <p className="text-red-500">Erreur : {String(error)}</p>;
