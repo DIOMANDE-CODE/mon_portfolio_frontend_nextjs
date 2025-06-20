@@ -126,7 +126,6 @@ export default function DetailProjet(props: {
                             paragraph.trim() && <p key={index}>{paragraph}</p>
                           ))
                         }
-                          
                       </div>
                       <div className="meta-bottom">
                         <div className="tags-section">

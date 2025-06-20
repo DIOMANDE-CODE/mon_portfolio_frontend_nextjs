@@ -12,10 +12,7 @@ export default function Header() {
         <div className="container-fluid container-xl position-relative">
           <div className="top-row d-flex align-items-center justify-content-between">
             <Link href="/" className="logo d-flex align-items-end">
-              {/* Uncomment the line below if you also wish to use an image logo */}
-              {/* <img src="assets/img/logo.webp" alt=""> */}
-              <h1 className="sitename">&#60;Chez PYTH /&gt;</h1>
-              <span></span>
+              <h1 className="sitename">&#60; DIOMANDE DROH MARTIAL /&gt;</h1>
             </Link>
             <div className="d-flex align-items-center">
               <div className="social-links">
@@ -28,35 +25,7 @@ export default function Header() {
                 >
                   <i className="bi bi-facebook" />
                 </Link>
-                <Link
-                  href="https://www.linkedin.com/in/diomande-droh-martial-a48005244/"
-                  className="linkedin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Compte LinkedIn"
-                >
-                  <i className="bi bi-linkedin" />
-                </Link>
-                <Link
-                  href="https://github.com/DIOMANDE-CODE"
-                  className="github"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Compte Github"
-                >
-                  <i className="bi bi-github" />
-                </Link>
               </div>
-              {/* <form className="search-form ms-4">
-                <input
-                  type="text"
-                  placeholder="Recherchez..."
-                  className="form-control"
-                />
-                <button type="submit" className="btn">
-                  <i className="bi bi-search" />
-                </button>
-              </form> */}
             </div>
           </div>
         </div>
@@ -94,10 +63,10 @@ export default function Header() {
                 <li>
                   {pathname === "/profil" ? (
                     <Link href="/profil" className="active">
-                      Profil
+                      Mon Profil
                     </Link>
                   ) : (
-                    <Link href="/profil">Profil</Link>
+                    <Link href="/profil">Mon Profil</Link>
                   )}
                 </li>
                 <li>

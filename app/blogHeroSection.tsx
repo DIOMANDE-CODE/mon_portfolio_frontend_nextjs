@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
-export default function BlogHeroSection(){
+export default function BlogHeroSection() {
   return (
     <>
       {/* Blog Hero Section */}
@@ -21,12 +20,10 @@ export default function BlogHeroSection(){
                   <span className="category">Developpement web/mobile</span>
                 </div>
                 <h2 className="post-title">
-                  <Link
-                    href="blog-details.html"
-                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                  >
-                    Vous avez une idée ? Je la transforme en application web ou mobile fonctionnelle, rapide et moderne.
-                  </Link>
+                  <span className="post-featured-title-span">
+                    Vous avez une idée ? Je la transforme en application web ou
+                    mobile fonctionnelle, rapide et moderne.
+                  </span>
                 </h2>
               </div>
             </article>
@@ -49,12 +46,9 @@ export default function BlogHeroSection(){
                   <span className="category">Intélligence Artificielle</span>
                 </div>
                 <h3 className="post-title">
-                  <a
-                    href="blog-details.html"
-                    title="Sed do eiusmod tempor incididunt ut labore"
-                  >
-                    L’IA pour automatiser, optimiser et faire évoluer vos projets.
-                  </a>
+                  <span className="post-title-span">
+                    J'intègre l'IA à vos solutions existantes.
+                  </span>
                 </h3>
               </div>
             </article>
