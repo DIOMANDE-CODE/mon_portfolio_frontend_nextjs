@@ -17,7 +17,8 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 import AOSProvider from "@/components/AOSProvider";
-// import PreloaderWrapper from "@/components/PreloaderWrapper";
+
+import { Analytics } from "@vercel/analytics/next"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({
             {children}
           </AOSProvider>
           <Footer></Footer>
+          <Analytics/>
         {/* </PreloaderWrapper> */}
         <Script
           src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
