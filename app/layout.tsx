@@ -19,6 +19,7 @@ import Footer from "@/components/footer";
 import AOSProvider from "@/components/AOSProvider";
 
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({
           </AOSProvider>
           <Footer></Footer>
           <Analytics/>
+          <SpeedInsights/>
         {/* </PreloaderWrapper> */}
         <Script
           src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
