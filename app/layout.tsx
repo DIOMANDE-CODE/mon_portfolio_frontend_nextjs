@@ -38,7 +38,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "<Chez PYTH/>",
+  title: "<DIOMANDE DROH MARTIAL/>",
   description: "Portofolio de Diomande Droh Martial",
   icons : {
     icon: "/mon-nouveau-favicon.ico"
@@ -96,10 +96,6 @@ export default function RootLayout({
           src="/assets/vendor/purecounter/purecounter_vanilla.js"
           strategy="lazyOnload"
         />
-        {/* <Script
-          src="/assets/vendor/glightbox/js/glightbox.min.js"
-          strategy="lazyOnload"
-        /> */}
         <Script src="/assets/js/main.js" strategy="lazyOnload" />
       </body>
     </html>
