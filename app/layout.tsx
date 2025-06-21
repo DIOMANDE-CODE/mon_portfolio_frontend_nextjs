@@ -76,8 +76,8 @@ export default function RootLayout({
             {children}
           </AOSProvider>
           <Footer></Footer>
-          <Analytics/>
           <SpeedInsights/>
+          <Analytics/>
         {/* </PreloaderWrapper> */}
         <Script
           src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
