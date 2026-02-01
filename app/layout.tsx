@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   description: "Portofolio de Diomande Droh Martial",
   keywords: ["portfolio", "développeur", "designer", "formateur"],
   icons: {
-    icon: "/mon-nouveau-favicon.ico",
+    icon: "/profil.ico",
   },
 };
 
