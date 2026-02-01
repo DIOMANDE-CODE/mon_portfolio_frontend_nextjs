@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+
 // import stylesheet files
 import "@/public/assets/css/main.css";
 import "@/public/assets/vendor/aos/aos.css";
@@ -12,14 +13,13 @@ import "@/public/assets/vendor/bootstrap-icons/bootstrap-icons.css";
 import { Roboto, Nunito, Poppins } from "next/font/google";
 
 import Script from "next/script";
-import Head from "next/head";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 import AOSProvider from "@/components/AOSProvider";
 
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -40,9 +40,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "<DIOMANDE DROH MARTIAL/>",
   description: "Portofolio de Diomande Droh Martial",
-  icons : {
-    icon: "/mon-nouveau-favicon.ico"
-  }
+  keywords: ["portfolio", "développeur", "designer", "formateur"],
+  icons: {
+    icon: "/mon-nouveau-favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -52,33 +53,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-
-        <link rel="icon" href="/mon-nouveau-favicon.ico" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </Head>
       <body
         className={`${roboto.variable} ${nunito.variable} ${poppins.variable}`}
       >
-        {/* <PreloaderWrapper> */}
-          <AOSProvider>
-            <Header></Header>
-            {children}
-          </AOSProvider>
-          <Footer></Footer>
-          <SpeedInsights/>
-          <Analytics/>
-        {/* </PreloaderWrapper> */}
+        <AOSProvider>
+          <Header />
+          {children}
+        </AOSProvider>
+        <Footer />
+        <SpeedInsights />
+        <Analytics />
+
+        {/* Scripts externes */}
         <Script
           src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
           strategy="beforeInteractive"

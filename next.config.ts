@@ -7,25 +7,21 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: '127.0.0.1',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'monportofoliobackend.up.railway.app',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        port: '',
         pathname: '/darkqhocp/**',
       },
     ],
