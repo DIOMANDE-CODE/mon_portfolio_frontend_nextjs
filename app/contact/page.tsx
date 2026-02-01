@@ -21,7 +21,7 @@ export default function Contact() {
     const loadCategories = async () => {
       setFetchLoading(true);
       try {
-        const res = await fetch(`${API_URL}/projet/categorie/list/`);
+        const res = await fetch(`${API_URL}projet/categorie/list/`);
         if (!res.ok) throw new Error(`Erreur API (${res.status})`);
         const data = await res.json();
         setServices(data);
