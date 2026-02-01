@@ -40,7 +40,7 @@ export default function AuthorInfo() {
       {authorInfo.map((author) => (
         <div className="col-lg-4 mb-4 mb-lg-0" key="author-info">
           <div className="author-card" data-aos="fade-up">
-            <div className="author-image">
+            <div className="author-image flex justify-center items-center">
               <Image
                 width={5000}
                 height={5000}

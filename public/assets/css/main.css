@@ -2740,6 +2740,7 @@ section,
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 10%;
 }
 
 .author-profile .author-card .author-info {
