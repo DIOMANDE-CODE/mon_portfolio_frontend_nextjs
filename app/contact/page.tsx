@@ -10,6 +10,8 @@ export default function Contact() {
     nom_categorie: string;
   }
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   // Charger les catégories depuis l’API avec fetch
   const [services, setServices] = useState<Categorie_Projet[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
@@ -19,7 +21,7 @@ export default function Contact() {
     const loadCategories = async () => {
       setFetchLoading(true);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projet/categorie/list/`);
+        const res = await fetch(`${API_URL}/projet/categorie/list/`);
         if (!res.ok) throw new Error(`Erreur API (${res.status})`);
         const data = await res.json();
         setServices(data);
@@ -30,7 +32,7 @@ export default function Contact() {
       }
     };
     loadCategories();
-  }, [process.env.NEXT_PUBLIC_API_URL]);
+  }, [API_URL]);
 
   // States pour le formulaire
   const [nom_client, setNom] = useState("");
@@ -51,7 +53,7 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/create/`, {
+      const res = await fetch(`${API_URL}/contact/create/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
