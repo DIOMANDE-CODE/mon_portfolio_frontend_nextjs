@@ -54,7 +54,7 @@ export default function Contact() {
 
     try {
       const res = await fetch(`${API_URL}contact/create/`, {
-        method: "POST",
+        method: "POST", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           nom_client,
@@ -138,7 +138,7 @@ export default function Contact() {
           </div>
 
           {/* Formulaire */}
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12">
               <div className="form-wrapper" data-aos="fade-up" data-aos-delay={400}>
                 <form onSubmit={handleSubmit}>
@@ -238,7 +238,6 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    {/* Messages */}
                     <div className="my-3">
                       {success && (
                         <div className="alert alert-success mt-3">
@@ -255,7 +254,6 @@ export default function Contact() {
                       )}
                     </div>
 
-                    {/* Bouton */}
                     <div className="text-center">
                       <button type="submit" disabled={loading}>
                         Envoyer
@@ -266,7 +264,7 @@ export default function Contact() {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
