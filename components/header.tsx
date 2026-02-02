@@ -15,7 +15,7 @@ export default function Header() {
               <h1 className="sitename">&#60; DIOMANDE DROH MARTIAL /&gt;</h1>
             </Link>
             <div className="d-flex align-items-center">
-              <div className="social-links">
+              {/* <div className="social-links">
                 <Link
                   href="https://web.facebook.com/Young.CAJ"
                   target="_blank"
@@ -25,7 +25,7 @@ export default function Header() {
                 >
                   <i className="bi bi-facebook" />
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

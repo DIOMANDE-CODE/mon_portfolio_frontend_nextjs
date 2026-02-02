@@ -38,7 +38,7 @@ export default function QuelqueProjets() {
       <section id="category-section" className="category-section section">
         {/* Section Title */}
         <div className="container section-title" data-aos="fade-up">
-          <h2>travaux</h2>
+          <h2>mes travaux</h2>
           <div>
             {" "}
             <span className="description-title">Quelques travaux réalisés</span>
