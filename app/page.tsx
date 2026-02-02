@@ -13,7 +13,7 @@ export default function Home() {
         <BlogHeroSection></BlogHeroSection>
         <section id="featured-posts" className="featured-posts section">
           {/* Section Title */}
-          <div className="container section-title" data-aos="fade-up">
+          <div className="container section-title">
             <h2>Mes services</h2>
             <div>
               <span>domaines d'interventions</span>{" "}
