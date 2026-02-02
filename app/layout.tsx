@@ -39,8 +39,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "<DIOMANDE DROH MARTIAL/>",
-  description: "Portofolio de Diomande Droh Martial",
-  keywords: ["portfolio", "développeur", "designer", "formateur"],
+  description: "Mon portfolio",
+  keywords: ["portfolio", "développeur", "designer","freelance","web", "mobile", "IA","fullstack","developer","designer","freelancer","webmaster"],
   icons: {
     icon: "/profil.ico",
   },

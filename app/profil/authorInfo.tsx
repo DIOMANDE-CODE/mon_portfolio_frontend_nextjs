@@ -56,52 +56,6 @@ export default function AuthorInfo() {
               <div className="author-bio">
                 <b>{author.slogan}</b>
               </div>
-
-              <div className="social-links">
-                {author.lien_facebook && (
-                  <a
-                    href={author.lien_facebook}
-                    className="facebook"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-facebook" />
-                  </a>
-                )}
-
-                {author.lien_github && (
-                  <a
-                    href={author.lien_github}
-                    className="github"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-github" />
-                  </a>
-                )}
-
-                {author.lien_instagram && (
-                  <a
-                    href={author.lien_instagram}
-                    className="instagram"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-instagram" />
-                  </a>
-                )}
-
-                {author.lien_linkedin && (
-                  <a
-                    href={author.lien_linkedin}
-                    className="linkedin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-linkedin" />
-                  </a>
-                )}
-              </div>
             </div>
           </div>
         </div>

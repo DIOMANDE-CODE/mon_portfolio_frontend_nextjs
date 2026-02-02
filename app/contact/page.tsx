@@ -127,9 +127,11 @@ export default function Contact() {
                 <div className="icon-box">
                   <i className="bi bi-telephone" />
                 </div>
-                <h3>Nous joindre aux :</h3>
+                <h3>Me joindre aux :</h3>
                 <p>
                   Téléphone: +225 07 11 39 95 67
+                  <br />
+                  WhatsApp: +225 05 95 03 16 94
                   <br />
                   Email: chezpyth@gmail.com
                 </p>

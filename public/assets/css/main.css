@@ -1096,7 +1096,7 @@ section,
 }
 
 .blog-hero .blog-item .post-meta .category::before {
-  content: "\f5d3";
+  content: "\f0d3";
 }
 
 .blog-hero .blog-item .post-title {
