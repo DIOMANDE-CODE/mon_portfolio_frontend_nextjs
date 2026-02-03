@@ -21,8 +21,8 @@ export default function DetailProjet(props: {
   const detail = use(getProjet(id)); // On récupère les données avec fetch
 
   type Tech = {
-    id : number;
-    nom_technologie : string
+    id: number;
+    nom_technologie: string
   }
 
   const categories = [detail.categorie_projet];
@@ -73,11 +73,12 @@ export default function DetailProjet(props: {
                         className="img-fluid"
                         loading="lazy"
                       />
+
                       <div className="meta-overlay">
                         {categories.map((cat) => (
                           <div className="meta-categories" key={cat.id}>
-                            <a href="#" className="category">
-                              {cat.nom_categorie}
+                            <a href={detail.lien_drive} target="_blank" className="category">
+                              {"Voir le contenu"}
                             </a>
                           </div>
                         ))}
@@ -122,16 +123,16 @@ export default function DetailProjet(props: {
                       <div className="content">
                         {
                           detail.description_projet.split('\n')
-                          .map((paragraph:string, index:number) => (
-                            paragraph.trim() && <p key={index}>{paragraph}</p>
-                          ))
+                            .map((paragraph: string, index: number) => (
+                              paragraph.trim() && <p key={index}>{paragraph}</p>
+                            ))
                         }
                       </div>
                       <div className="meta-bottom">
                         <div className="tags-section">
                           <h4>Technologies / logiciels utilisés :</h4>
                           <div className="tags">
-                            {technologies.map((tech:Tech) => (
+                            {technologies.map((tech: Tech) => (
                               <span className="tag" key={tech.id}>
                                 {tech.nom_technologie}
                               </span>

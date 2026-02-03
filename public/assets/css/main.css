@@ -1995,6 +1995,7 @@ section,
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 10%;
 }
 
 .blog-details .article-content .content-header .author-info .author-details .info h4 {
