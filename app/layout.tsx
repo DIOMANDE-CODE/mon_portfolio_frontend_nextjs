@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 
 // import stylesheet files
-import "@/public/assets/css/main.css";
+import "../public/assets/css/main.css";
 import "@/public/assets/vendor/aos/aos.css";
 import "@/public/assets/vendor/swiper/swiper-bundle.min.css";
 import "@/public/assets/vendor/glightbox/css/glightbox.min.css";
