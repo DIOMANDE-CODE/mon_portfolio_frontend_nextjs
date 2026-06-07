@@ -1,59 +1,96 @@
 import Link from "next/link";
 
+const EXPERTISES = [
+  "Développement Web Full-Stack",
+  "Développement Mobile",
+  "Intelligence Artificielle",
+  "Communication digitale",
+  "Infographie",
+];
+
+const NAV_LINKS = [
+  { href: "/", label: "Accueil" },
+  { href: "/projet", label: "Mes travaux" },
+  { href: "/visuel", label: "Mes visuels" },
+  { href: "/profil", label: "Mon profil" },
+  // { href: "/contact", label: "Me joindre"   },
+];
+
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer id="footer" className="footer">
-      <div className="container footer-top">
+    <footer id="footer" role="contentinfo">
+      <div className="container">
         <div className="row gy-4">
-          <div className="col-lg-4 col-md-6 footer-about">
-            <div className="footer-contact pt-3">
-              <p>Abidjan, Yamoussoukro</p>
-              <p className="mt-3">
-                <strong>WhatsApp:</strong> <span>+225 07 11 39 95 67</span>
-              </p>
-              <p className="mt-1">
-                <strong>Téléphone:</strong> <span>+225 07 11 39 95 67</span>
-              </p>
-              <p>
-                <strong>Email:</strong> <span>chezpyth@gmail.com</span>
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-3 footer-links">
-            <h4>Liens utiles</h4>
-            <ul>
+
+          {/* ── Colonne 1 : identité + contact ── */}
+          <div className="col-lg-4 col-md-12">
+            <span className="footer-logo" aria-label="DROH — logo">&lt; DIOMANDE DROH MARTIAL /&gt;</span>
+            <p className="footer-tagline">
+              Développeur Full-Stack passionné par la création d&apos;applications web
+              modernes, performantes et intelligentes.
+            </p>
+            <ul className="footer-list" aria-label="Coordonnées">
               <li>
-                <Link href="/">Acceuil</Link>
+                <i className="bi bi-geo-alt footer-icon" aria-hidden="true" />
+                <span>Abidjan · Yamoussoukro, Côte d&apos;Ivoire</span>
               </li>
               <li>
-                <Link href="/projet">Mes travaux</Link>
+                <i className="bi bi-whatsapp footer-icon" aria-hidden="true" />
+                <a href="https://wa.me/2250595031694" target="_blank"
+                  rel="noopener noreferrer" className="footer-contact-link">
+                  +225 05 95 03 16 94
+                </a>
               </li>
               <li>
-                <Link href="/visuel">Mes visuels</Link>
-              </li>
-              <li>
-                <Link href="/profil">Mon profil</Link>
+                <i className="bi bi-envelope footer-icon" aria-hidden="true" />
+                <a href="mailto:chezpyth@gmail.com" target="_blank"
+                  rel="noopener noreferrer" className="footer-contact-link">
+                  chezpyth@gmail.com
+                </a>
               </li>
             </ul>
           </div>
-          <div className="col-lg-4 col-md-3 footer-links">
-            <h4>Compétences</h4>
-            <ul>
-              <li>
-                <span>Développement Web</span>
-              </li>
-              <li>
-                <span >Développement Mobile</span>
-              </li>
-              <li>
-                <span >Communication visuelle</span>
-              </li>
-              <li>
-                <span>Graphisme/Audiovisuel</span>
-              </li>
+
+          {/* ── Colonne 2 : navigation ── */}
+          <div className="col-lg-4 col-md-6">
+            <h4 className="footer-heading">Navigation</h4>
+            <nav aria-label="Navigation pied de page">
+              <ul className="footer-list">
+                {NAV_LINKS.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="footer-nav-link">
+                      <i className="bi bi-chevron-right footer-arrow" aria-hidden="true" />
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* ── Colonne 3 : expertises ── */}
+          <div className="col-lg-4 col-md-6">
+            <h4 className="footer-heading">Expertises</h4>
+            <ul className="footer-list" aria-label="Domaines d'expertise">
+              {EXPERTISES.map((s) => (
+                <li key={s} className="footer-expertise-item">
+                  <span className="footer-bullet" aria-hidden="true">▸</span>
+                  <span>{s}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
+
+        <hr className="footer-divider" />
+
+        {/* <div className="footer-bottom">
+          <p className="footer-copy">
+            &copy; {year} <span>DIOMANDE DROH MARTIAL</span>. Tous droits réservés.
+          </p>
+        </div> */}
       </div>
     </footer>
   );

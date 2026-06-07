@@ -1,214 +1,160 @@
 import Image from "next/image";
-
+import Link from "next/link";
 import { use } from "react";
 import { notFound } from "next/navigation";
 
-import Link from "next/link";
+type Tech = { id: number; nom_technologie: string };
 
 async function getProjet(id: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}projet/detail/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}projet/detail/${id}`, {
+    cache: "no-store",
+  });
   if (!res.ok) notFound();
-  else {
-    return res.json();
-  }
+  return res.json();
 }
 
-export default function DetailProjet(props: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(props.params); // ✅ On "unwrap" la promesse
+export default function DetailProjet(props: { params: Promise<{ id: string }> }) {
+  const { id } = use(props.params);
+  const detail = use(getProjet(id));
 
-  const detail = use(getProjet(id)); // On récupère les données avec fetch
-
-  type Tech = {
-    id: number;
-    nom_technologie: string
-  }
-
-  const categories = [detail.categorie_projet];
-  const proprietaires = [detail.proprietaire];
-  const technologies = detail.technologie;
-  console.log(technologies);
+  const categories = Array.isArray(detail.categorie_projet) ? detail.categorie_projet : [detail.categorie_projet];
+  const proprietaires = Array.isArray(detail.proprietaire) ? detail.proprietaire : [detail.proprietaire];
+  const technologies: Tech[] = detail.technologie ?? [];
 
   return (
-    <>
-      <main className="main">
-        {/* Page Title */}
-        <div className="page-title">
-          <div className="breadcrumbs">
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link href="/">
-                    <i className="bi bi-house" /> Acceuil
-                  </Link>
-                </li>
-                <li className="breadcrumb-item">
-                  <Link href="/projet">
-                    <i /> Mes travaux
-                  </Link>
-                </li>
-                <li className="breadcrumb-item active current">Detail</li>
-              </ol>
-            </nav>
-          </div>
-          <div className="title-wrapper">
+    <main className="main">
+      <div className="page-title">
+        <div className="container">
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <Link href="/"><i className="bi bi-house" /> Accueil</Link>
+              </li>
+              <li className="breadcrumb-item">
+                <Link href="/projet">Mes travaux</Link>
+              </li>
+              <li className="breadcrumb-item active">Détail</li>
+            </ol>
+          </nav>
+          <div className="title-wrapper" style={{ position: "relative", zIndex: 1 }}>
             <h1>Détail du projet</h1>
           </div>
         </div>
-        {/* End Page Title */}
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-10">
-              {/* Blog Details Section */}
-              <section id="blog-details" className="blog-details section">
-                <div className="container" data-aos="fade-up">
-                  <article className="article">
-                    <div className="hero-img" data-aos="zoom-in">
-                      <Image
-                        width={5000}
-                        height={5000}
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${detail.image_projet}`}
-                        alt={detail.titre_projet}
-                        className="img-fluid"
-                        loading="lazy"
-                      />
+      </div>
 
-                      <div className="meta-overlay">
-                        {categories.map((cat) => (
-                          <div className="meta-categories" key={cat.id}>
-                            <a href={detail.lien_drive} target="_blank" className="category">
-                              {"Voir le contenu"}
-                            </a>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div
-                      className="article-content"
-                      data-aos="fade-up"
-                      data-aos-delay={100}
-                    >
-                      <div className="content-header">
-                        <h1 className="title">{detail.titre_projet}</h1>
-                        <div className="author-info">
-                          {proprietaires.map((proprio) => (
-                            <div className="author-details" key="auteur">
-                              <Image
-                                width={5000}
-                                height={5000}
-                                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${proprio.photo_profil}`}
-                                alt="Author"
-                                className="author-img"
-                              />
-                              <div className="info">
-                                <h4>{proprio.nom}</h4>
-                                <span className="role">
-                                  {proprio.fonctions}
-                                </span>
-                              </div>
-                            </div>
-                          ))}
-
-                          <div className="post-meta">
-                            <span className="date">
-                              <i className="bi bi-calendar3" />{" "}
-                              {new Date(detail.date_creation).toLocaleString(
-                                "fr-fr"
-                              )}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="content">
-                        {
-                          detail.description_projet.split('\n')
-                            .map((paragraph: string, index: number) => (
-                              paragraph.trim() && <p key={index}>{paragraph}</p>
-                            ))
-                        }
-                      </div>
-                      <div className="meta-bottom">
-                        <div className="tags-section">
-                          <h4>Technologies / logiciels utilisés :</h4>
-                          <div className="tags">
-                            {technologies.map((tech: Tech) => (
-                              <span className="tag" key={tech.id}>
-                                {tech.nom_technologie}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="share-section">
-                          <h4>Ressources :</h4>
-                          <div className="social-links">
-                            {detail.lien_facebook && (
-                              <Link
-                                href={detail.lien_facebook}
-                                className="facebook"
-                                target="_blank"
-                                title="Lien Facebook du projet"
-                              >
-                                <i className="bi bi-facebook" />
-                              </Link>
-                            )}
-
-                            {detail.lien_instagram && (
-                              <Link
-                                href={detail.li}
-                                target="_blank"
-                                className="instagram"
-                                title="Lien Instagram du projet"
-                              >
-                                <i className="bi bi-instagram" />
-                              </Link>
-                            )}
-
-                            {detail.lien_github && (
-                              <a
-                                href={detail.lien_github}
-                                target="_blank"
-                                className="github"
-                                title="Lien Github du projet"
-                              >
-                                <i className="bi bi-github" />
-                              </a>
-                            )}
-
-                            {detail.lien_drive && (
-                              <a
-                                href={detail.lien_drive}
-                                target="_blank"
-                                className="folder"
-                                title="Lien Drive du projet"
-                              >
-                                <i className="bi bi-folder" />
-                              </a>
-                            )}
-
-                            {detail.lien_projet && (
-                              <a
-                                href={detail.lien_projet}
-                                target="_blank"
-                                className="link"
-                                title="Lien du projet"
-                              >
-                                <i className="bi bi-link" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
+      <div className="container" style={{ paddingBottom: "4rem" }}>
+        <div className="row">
+          <div className="col-lg-10">
+            {/* Image hero */}
+            <div className="detail-hero-img" data-aos="zoom-in">
+              <Image
+                width={1200}
+                height={600}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${detail.image_projet}`}
+                alt={detail.titre_projet}
+                priority
+              />
+              {detail.lien_drive && (
+                <div className="detail-hero-overlay">
+                  <a href={detail.lien_drive} target="_blank" rel="noreferrer" className="view-content-btn">
+                    <i className="bi bi-play-circle" />
+                    Voir le contenu
+                  </a>
                 </div>
-              </section>
+              )}
+            </div>
 
-              {/* /Blog Details Section */}
+            {/* Article */}
+            <div className="detail-article" data-aos="fade-up" data-aos-delay="100">
+              {/* Catégories */}
+              <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
+                {categories.map((cat: { id: number; nom_categorie: string }) => (
+                  <span className="category-tag" key={cat.id}>{cat.nom_categorie}</span>
+                ))}
+              </div>
+
+              <h1 className="detail-title">{detail.titre_projet}</h1>
+
+              {/* Meta auteur */}
+              <div className="detail-meta-row">
+                {proprietaires.map((p: { id: number; photo_profil: string; nom: string; fonctions: string }, pi: number) => (
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }} key={p.id ?? `owner-${pi}`}>
+                    <Image
+                      width={44}
+                      height={44}
+                      src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${p.photo_profil}`}
+                      alt={p.nom}
+                      className="detail-author-img"
+                    />
+                    <div>
+                      <div className="detail-author-name">{p.nom}</div>
+                      <div className="detail-author-role">{p.fonctions}</div>
+                    </div>
+                  </div>
+                ))}
+                <div className="detail-date">
+                  <i className="bi bi-calendar3" />
+                  {new Date(detail.date_creation).toLocaleDateString("fr-FR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="detail-content">
+                {detail.description_projet
+                  .split("\n")
+                  .map((para: string, i: number) =>
+                    para.trim() ? <p key={i}>{para}</p> : null
+                  )}
+              </div>
+
+              {/* Technologies */}
+              {technologies.length > 0 && (
+                <div className="detail-meta-block">
+                  <h4><i className="bi bi-cpu" style={{ marginRight: "0.4rem", color: "var(--accent-cyan)" }} />Technologies &amp; Outils utilisés</h4>
+                  <div className="tags-row">
+                    {technologies.map((tech) => (
+                      <span className="tech-tag" key={tech.id}>{tech.nom_technologie}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Ressources */}
+              {(detail.lien_github || detail.lien_drive || detail.lien_projet || detail.lien_facebook || detail.lien_instagram) && (
+                <div className="detail-meta-block">
+                  <h4><i className="bi bi-link-45deg" style={{ marginRight: "0.4rem", color: "var(--accent-purple)" }} />Ressources</h4>
+                  <div className="resource-links">
+                    {detail.lien_github && (
+                      <a href={detail.lien_github} target="_blank" rel="noreferrer" className="resource-link">
+                        <i className="bi bi-github" /> GitHub
+                      </a>
+                    )}
+                    {detail.lien_drive && (
+                      <a href={detail.lien_drive} target="_blank" rel="noreferrer" className="resource-link">
+                        <i className="bi bi-folder" /> Drive
+                      </a>
+                    )}
+                    {detail.lien_projet && (
+                      <a href={detail.lien_projet} target="_blank" rel="noreferrer" className="resource-link">
+                        <i className="bi bi-globe" /> Voir le projet
+                      </a>
+                    )}
+                    {detail.lien_facebook && (
+                      <a href={detail.lien_facebook} target="_blank" rel="noreferrer" className="resource-link">
+                        <i className="bi bi-facebook" /> Facebook
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

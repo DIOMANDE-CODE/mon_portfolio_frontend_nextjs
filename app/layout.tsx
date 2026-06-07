@@ -1,87 +1,66 @@
 import type { Metadata } from "next";
 
-
-// import stylesheet files
-import "../public/assets/css/main.css";
+import "@/public/assets/vendor/bootstrap-icons/bootstrap-icons.css";
 import "@/public/assets/vendor/aos/aos.css";
 import "@/public/assets/vendor/swiper/swiper-bundle.min.css";
 import "@/public/assets/vendor/glightbox/css/glightbox.min.css";
 import "@/public/assets/vendor/bootstrap/css/bootstrap.min.css";
-import "@/public/assets/vendor/bootstrap-icons/bootstrap-icons.css";
+import "../public/assets/css/main.css";
+import "./globals.css";
 
-// import google font file
-import { Roboto, Nunito, Poppins } from "next/font/google";
+import { Roboto, Poppins } from "next/font/google";
 
 import Script from "next/script";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
 import AOSProvider from "@/components/AOSProvider";
-
+import FloatingContact from "@/components/FloatingContact";
+import MouseEffects from "@/components/MouseEffects";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
+  display: "swap",
 });
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-nunito",
-});
+
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "600", "700", "800", "900"],
   variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "<DIOMANDE DROH MARTIAL/>",
-  description: "Mon portfolio",
-  keywords: ["portfolio", "développeur", "designer","freelance","web", "mobile", "IA","fullstack","developer","designer","freelancer","webmaster"],
-  icons: {
-    icon: "/profil.ico",
-  },
+  description: "Portfolio — Développeur Full-Stack · Ingénieur Logiciel · Expert IA",
+  keywords: ["portfolio", "développeur", "designer", "freelance", "web", "mobile", "IA", "fullstack", "developer"],
+  icons: { icon: "/profil.ico" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body
-        className={`${roboto.variable} ${nunito.variable} ${poppins.variable}`}
-      >
+      <body className={`${roboto.variable} ${poppins.variable}`}>
         <AOSProvider>
           <Header />
           {children}
         </AOSProvider>
         <Footer />
+
+        {/* ── Boutons flottants animés ── */}
+        <FloatingContact />
+        {/* ── Effets souris globaux ── */}
+        <MouseEffects />
+
         <SpeedInsights />
         <Analytics />
 
-        {/* Scripts externes */}
-        <Script
-          src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
-          strategy="beforeInteractive"
-        />
-        <Script
-          src="/assets/vendor/php-email-form/validate.js"
-          strategy="lazyOnload"
-        />
+        <Script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" strategy="beforeInteractive" />
         <Script src="/assets/vendor/aos/aos.js" strategy="lazyOnload" />
-        <Script
-          src="/assets/vendor/swiper/swiper-bundle.min.js"
-          strategy="lazyOnload"
-        />
-        <Script
-          src="/assets/vendor/purecounter/purecounter_vanilla.js"
-          strategy="lazyOnload"
-        />
+        <Script src="/assets/vendor/swiper/swiper-bundle.min.js" strategy="lazyOnload" />
         <Script src="/assets/js/main.js" strategy="lazyOnload" />
       </body>
     </html>

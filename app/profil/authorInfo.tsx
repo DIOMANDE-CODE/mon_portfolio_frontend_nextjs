@@ -1,63 +1,189 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import useFetch from "@/hook/useFetch";
 
-export default function AuthorInfo() {
-  interface Author_Info {
-    id: number;
-    photo_profil: string;
-    nom: string;
-    fonctions: string;
-    slogan: string;
-    nombre_projet: number;
-    nombre_recompense: number;
-    lien_facebook: string;
-    lien_instagram: string;
-    lien_linkedin: string;
-    lien_twitter: string;
-    lien_github: string;
-    biographie: string;
-  }
+interface AuthorInfo {
+  id: number;
+  photo_profil: string;
+  nom: string;
+  fonctions: string;
+  slogan: string;
+  nombre_projet: number;
+  nombre_recompense: number;
+  lien_facebook: string;
+  lien_instagram: string;
+  lien_linkedin: string;
+  lien_twitter: string;
+  lien_github: string;
+}
 
-  const { data, error, loading } = useFetch("users/list/")
-  // Declaration du state de AuthorInfo
-  const [authorInfo, setAuthorInfo] = useState<Author_Info[]>([]);
+export default function AuthorInfo() {
+  const { data, error, loading } = useFetch("users/list/");
+  const [authors, setAuthors] = useState<AuthorInfo[]>([]);
 
   useEffect(() => {
-    if (data){      
-      setAuthorInfo(data)
-    }
+    if (data) setAuthors(data as AuthorInfo[]);
   }, [data]);
-  
 
-  if (loading) return <div id="preloader"></div>;
-  if (error) return <p className="text-red-500">Erreur : {String(error)}</p>;
+  if (loading)
+    return (
+      <div className="profil-hero-loading">
+        <div className="loading-spinner" />
+      </div>
+    );
+  if (error)
+    return (
+      <div className="error-box">
+        <i className="bi bi-exclamation-triangle" /> {String(error)}
+      </div>
+    );
 
   return (
     <>
-      {authorInfo.map((author) => (
-        <div className="col-lg-4 mb-4 mb-lg-0" key="author-info">
-          <div className="author-card" data-aos="fade-up">
-            <div className="author-image flex justify-center items-center">
-              <Image
-                width={5000}
-                height={5000}
-                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${author.photo_profil}`}
-                priority
-                alt="Author"
-                className="img-fluid rounded"
-              />
-            </div>
-            <div className="author-info">
-              <h2>{author.nom}</h2>
-              <p className="designation">{author.fonctions}</p>
-              <div className="author-bio">
-                <b>{author.slogan}</b>
+      {authors.map((author, i) => (
+        <div className="profil-hero-inner" key={author.id ?? i}>
+
+          {/* ── Gauche : texte, contact, social ── */}
+          <div className="profil-hero-content" data-aos="fade-right" data-aos-duration="800">
+
+            <div className="profil-about-tag">À PROPOS DE MOI</div>
+
+            <h1 className="profil-big-title">
+              {author.nom.split(" ")[0]}<br />
+              <span className="gradient-text">
+                {author.nom.split(" ").slice(1).join(" ")}
+              </span>
+            </h1>
+
+            <p className="profil-function-badge">
+              <i className="bi bi-code-slash" />
+              {author.fonctions}
+            </p>
+
+            <blockquote className="profil-slogan">
+              <i className="bi bi-quote" />
+              {author.slogan}
+            </blockquote>
+
+            {/* Contact */}
+            <div className="profil-contact-section">
+              <h3 className="profil-section-heading">Contact</h3>
+              <div className="profil-contact-grid">
+                <div className="profil-contact-item">
+                  <span className="profil-contact-icon">
+                    <i className="bi bi-envelope-fill" />
+                  </span>
+                  <span>chezpyth@gmail.com</span>
+                </div>
+                <div className="profil-contact-item">
+                  <span className="profil-contact-icon">
+                    <i className="bi bi-whatsapp" />
+                  </span>
+                  <span>+225 05 95 03 16 94</span>
+                </div>
+                {/* {author.lien_linkedin && (
+                  <div className="profil-contact-item">
+                    <span className="profil-contact-icon">
+                      <i className="bi bi-linkedin" />
+                    </span>
+                    <a
+                      href={author.lien_linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      linkedin.com/in/droh
+                    </a>
+                  </div>
+                )} */}
+                {/* {author.lien_github && (
+                  <div className="profil-contact-item">
+                    <span className="profil-contact-icon">
+                      <i className="bi bi-github" />
+                    </span>
+                    <a
+                      href={author.lien_github}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      github.com/droh
+                    </a>
+                  </div>
+                )} */}
               </div>
             </div>
+
+            {/* Social */}
+            <div className="social-icons-row" style={{ marginTop: "1.75rem" }}>
+              {author.lien_github && (
+                <Link href={author.lien_github} target="_blank" rel="noreferrer" className="social-icon-btn" title="GitHub">
+                  <i className="bi bi-github" />
+                </Link>
+              )}
+              {author.lien_linkedin && (
+                <Link href={author.lien_linkedin} target="_blank" rel="noreferrer" className="social-icon-btn" title="LinkedIn">
+                  <i className="bi bi-linkedin" />
+                </Link>
+              )}
+              {author.lien_instagram && (
+                <Link href={author.lien_instagram} target="_blank" rel="noreferrer" className="social-icon-btn" title="Instagram">
+                  <i className="bi bi-instagram" />
+                </Link>
+              )}
+              {author.lien_twitter && (
+                <Link href={author.lien_twitter} target="_blank" rel="noreferrer" className="social-icon-btn" title="Twitter / X">
+                  <i className="bi bi-twitter-x" />
+                </Link>
+              )}
+            </div>
           </div>
+
+          {/* ── Droite : photo cadrée ── */}
+          <div
+            className="profil-photo-wrapper"
+            data-aos="fade-left"
+            data-aos-duration="800"
+            data-aos-delay="150"
+          >
+            {/* Badge flottant haut-droite */}
+            <div className="profil-stat-badge top-right">
+              <span className="profil-stat-num">+{author.nombre_projet}</span>
+              <span className="profil-stat-lbl">Projets</span>
+            </div>
+
+            {/* Badge flottant bas-gauche */}
+            <div className="profil-stat-badge bottom-left">
+              <span className="profil-stat-num">{author.nombre_recompense}</span>
+              <span className="profil-stat-lbl">Récompense</span>
+            </div>
+
+            {/* Photo portrait */}
+            <div className="profil-photo-frame">
+              <Image
+                width={400}
+                height={540}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${author.photo_profil}`}
+                alt={author.nom}
+                priority
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center 8%",
+                }}
+              />
+              <div className="profil-photo-glow" />
+            </div>
+
+            {/* Anneaux décoratifs */}
+            <div className="profil-deco-ring" />
+            <div className="profil-deco-ring-2" />
+          </div>
+
         </div>
       ))}
     </>
