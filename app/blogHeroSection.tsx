@@ -93,11 +93,22 @@ export default function BlogHeroSection() {
           <div className="hero-visuals" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
             <div className="hero-visuals-grid">
               <div className="hero-img-main">
+                {/* Desktop : image principale */}
                 <Image
+                  className="hero-img-desktop-only"
                   src="/assets/img/index/index_image_1.jpg"
                   alt="Développement web & mobile"
                   width={600}
                   height={800}
+                  priority
+                />
+                {/* Mobile : image avec code informatique */}
+                <Image
+                  className="hero-img-mobile-only"
+                  src="/assets/img/index/index_image_2.jpg"
+                  alt="Code informatique — développement"
+                  width={600}
+                  height={400}
                   priority
                 />
                 {/* Badge flottant sur l'image principale */}
