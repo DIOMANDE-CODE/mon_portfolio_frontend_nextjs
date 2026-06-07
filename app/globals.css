@@ -333,22 +333,45 @@ section { padding: 5rem 0; }
 .mobile-nav {
   display: none;
   flex-direction: column;
-  padding: 0.75rem 1.5rem 1rem;
+  padding: 0.5rem 1rem 1rem;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(7, 7, 20, 0.97);
+  background: rgba(7, 7, 20, 0.98);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  z-index: 10001; /* au-dessus de l'overlay (9000) et du header (9999) */
 }
 .mobile-nav.open { display: flex; }
 .mobile-nav a {
-  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
   color: var(--text-secondary);
-  border-radius: 8px;
-  transition: all var(--transition);
-  font-size: 0.9rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
 }
-.mobile-nav a:hover, .mobile-nav a.active {
+.mobile-nav a:hover {
   color: var(--accent-cyan);
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(0, 212, 255, 0.07);
+  border-color: rgba(0, 212, 255, 0.15);
+}
+.mobile-nav a.active {
+  color: var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.2);
+  font-weight: 700;
+}
+.mobile-nav a i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
 }
 
 /* Old header classes – override */
@@ -933,20 +956,107 @@ section { padding: 5rem 0; }
 }
 
 /* === 16. PROJECTS LIST PAGE =================================== */
-.projects-layout {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 2.5rem;
-  align-items: start;
-}
-@media (max-width: 992px) {
-  .projects-layout { grid-template-columns: 1fr; }
+/* Barre de filtres horizontale */
+.proj-filter-section {
+  margin-bottom: 2rem;
 }
 
+.proj-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.proj-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+.proj-filter-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: rgba(0,212,255,0.06);
+}
+.proj-filter-btn.active {
+  background: var(--gradient-main);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 14px rgba(0,212,255,0.25);
+}
+.proj-filter-count {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  background: rgba(255,255,255,0.1);
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+.proj-filter-btn.active .proj-filter-count {
+  background: rgba(255,255,255,0.25);
+  opacity: 1;
+}
+
+/* Skeleton des filtres pendant le chargement */
+.proj-filter-skeleton {
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: vSkeletonShine 1.5s ease-in-out infinite;
+}
+
+/* Indicateur filtre actif */
+.proj-active-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+}
+.proj-active-filter i { font-size: 0.75rem; }
+.proj-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid rgba(0,212,255,0.35);
+  border-radius: 999px;
+  background: rgba(0,212,255,0.07);
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.25rem;
+}
+.proj-clear-btn:hover { background: rgba(0,212,255,0.15); }
+
+/* Grille projets — maintenant pleine largeur */
 .projects-main-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+}
+
+/* Ancien layout sidebar — conservé pour ne pas casser de référence éventuelle */
+.projects-layout {
+  display: block;
 }
 @media (max-width: 600px) {
   .projects-main-grid { grid-template-columns: 1fr; }
@@ -3387,7 +3497,8 @@ section { padding: 5rem 0; }
   inset: 0;
   background: rgba(7,7,20,0.65);
   backdrop-filter: blur(4px);
-  z-index: 998;
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9000; /* entre le contenu (0) et le header/nav (9999+) */
   animation: fadeIn 0.2s ease;
 }
 

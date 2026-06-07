@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import useFetch from "@/hook/useFetch";
 
-interface Categorie { id: number; nom_categorie: string; }
+interface Categorie    { id: number; nom_categorie: string; }
 interface Proprietaire { id: number; nom: string; photo_profil: string; }
 interface Projet {
   id: number;
@@ -24,7 +24,7 @@ function toArray<T>(val: T | T[]): T[] {
 
 /* ── Carte projet ── */
 function ProjetCard({ projet, delay = 0 }: { projet: Projet; delay?: number }) {
-  const cats = toArray(projet.categorie_projet);
+  const cats   = toArray(projet.categorie_projet);
   const owners = toArray(projet.proprietaire);
 
   return (
@@ -40,10 +40,14 @@ function ProjetCard({ projet, delay = 0 }: { projet: Projet; delay?: number }) {
           src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${projet.image_projet}`}
           alt={projet.titre_projet}
           loading="lazy"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="project-list-img-overlay">
-          <Link href={`/projet/${projet.id}`} className="project-list-overlay-btn" aria-label={`Voir ${projet.titre_projet}`}>
+          <Link
+            href={`/projet/${projet.id}`}
+            className="project-list-overlay-btn"
+            aria-label={`Voir ${projet.titre_projet}`}
+          >
             <i className="bi bi-arrow-right-circle" aria-hidden="true" />
             Voir le projet
           </Link>
@@ -126,18 +130,20 @@ function ProjetGrid({ url }: { url: string }) {
   );
 }
 
-/* ── Sidebar filtres ── */
-function CategoriesSidebar({
+/* ── Barre de filtres horizontale ── */
+const HIDDEN_CATEGORIES = ["conception graphique", "graphisme"];
+
+function CategoriesFilterBar({
   activeCatId,
+  activeName,
   onSelect,
 }: {
   activeCatId: number | null;
-  onSelect: (id: number | null) => void;
+  activeName: string;
+  onSelect: (id: number | null, name: string) => void;
 }) {
-  const { data, loading, error } = useFetch("projet/categorie/list");
+  const { data, loading } = useFetch("projet/categorie/list");
   const [cats, setCats] = useState<Category[]>([]);
-
-  const HIDDEN_CATEGORIES = ["conception graphique", "graphisme"];
 
   useEffect(() => {
     if (data) {
@@ -146,55 +152,71 @@ function CategoriesSidebar({
     }
   }, [data]);
 
-  if (loading)
-    return (
-      <div className="sidebar-card">
-        <div className="loading-box" style={{ padding: "1.5rem" }}>
-          <div className="loading-spinner" />
-        </div>
-      </div>
-    );
-  if (error) return null;
-
   const total = cats.reduce((sum, c) => sum + c.nombre_projets, 0);
 
   return (
-    <aside className="sidebar-card" data-aos="fade-left" aria-label="Filtrer par catégorie">
-      <h3 className="sidebar-title">
-        <i className="bi bi-funnel" aria-hidden="true" />
-        Filtrer
-      </h3>
+    <div className="proj-filter-section" data-aos="fade-up">
+      <div className="proj-filter-bar" role="group" aria-label="Filtrer par catégorie">
 
-      <button
-        className={`filter-item ${activeCatId === null ? "active" : ""}`}
-        onClick={() => onSelect(null)}
-        aria-pressed={activeCatId === null}
-      >
-        <span>Tous les projets</span>
-        <span className="filter-count">{total}</span>
-      </button>
-
-      {cats.map((cat) => (
+        {/* Filtre "Tous" */}
         <button
-          key={cat.id}
-          className={`filter-item ${activeCatId === cat.id ? "active" : ""}`}
-          onClick={() => onSelect(cat.id)}
-          aria-pressed={activeCatId === cat.id}
+          className={`proj-filter-btn${activeCatId === null ? " active" : ""}`}
+          onClick={() => onSelect(null, "Tous les projets")}
+          aria-pressed={activeCatId === null}
         >
-          <span>{cat.nom_categorie}</span>
-          <span className="filter-count">{cat.nombre_projets}</span>
+          <i className="bi bi-grid-fill" aria-hidden="true" />
+          <span>Tous</span>
+          {!loading && <span className="proj-filter-count">{total}</span>}
         </button>
-      ))}
-    </aside>
+
+        {/* Skeleton pendant le chargement */}
+        {loading && (
+          <>
+            {[80, 110, 90, 100].map((w, i) => (
+              <div key={i} className="proj-filter-skeleton" style={{ width: w }} />
+            ))}
+          </>
+        )}
+
+        {/* Catégories */}
+        {cats.map((cat) => (
+          <button
+            key={cat.id}
+            className={`proj-filter-btn${activeCatId === cat.id ? " active" : ""}`}
+            onClick={() => onSelect(cat.id, cat.nom_categorie)}
+            aria-pressed={activeCatId === cat.id}
+          >
+            <span>{cat.nom_categorie}</span>
+            <span className="proj-filter-count">{cat.nombre_projets}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Indicateur du filtre actif */}
+      {activeCatId !== null && (
+        <div className="proj-active-filter">
+          <i className="bi bi-funnel-fill" aria-hidden="true" />
+          <span>{activeName}</span>
+          <button
+            className="proj-clear-btn"
+            onClick={() => onSelect(null, "Tous les projets")}
+            aria-label="Supprimer le filtre"
+          >
+            <i className="bi bi-x" aria-hidden="true" />
+            Tout afficher
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
 /* ── Page principale ── */
 export default function ProjetsPage() {
-  const [activeCatId, setActiveCatId] = useState<number | null>(null);
-  const [activeName, setActiveName] = useState<string>("Tous les projets");
+  const [activeCatId,  setActiveCatId]  = useState<number | null>(null);
+  const [activeName,   setActiveName]   = useState("Tous les projets");
 
-  const handleSelect = (id: number | null, name = "Tous les projets") => {
+  const handleSelect = (id: number | null, name: string) => {
     setActiveCatId(id);
     setActiveName(name);
   };
@@ -205,6 +227,8 @@ export default function ProjetsPage() {
 
   return (
     <main className="main" id="main-content">
+
+      {/* ── Header de page ── */}
       <div className="page-title">
         <div className="container">
           <nav aria-label="Fil d'Ariane">
@@ -226,39 +250,19 @@ export default function ProjetsPage() {
       </div>
 
       <div className="container section-pb">
-        {/* Indicateur de filtre actif */}
-        <div className="active-filter-bar" data-aos="fade-up">
-          <span className="active-filter-label">
-            <i className="bi bi-funnel-fill" aria-hidden="true" />
-            {activeName}
-          </span>
-          {activeCatId !== null && (
-            <button
-              className="active-filter-clear"
-              onClick={() => handleSelect(null)}
-              aria-label="Supprimer le filtre"
-            >
-              <i className="bi bi-x" aria-hidden="true" />
-              Tout afficher
-            </button>
-          )}
+
+        {/* ── Barre de filtres (au-dessus des projets) ── */}
+        <CategoriesFilterBar
+          activeCatId={activeCatId}
+          activeName={activeName}
+          onSelect={handleSelect}
+        />
+
+        {/* ── Grille de projets ── */}
+        <div data-aos="fade-up">
+          <ProjetGrid url={apiUrl} />
         </div>
 
-        <div className="projects-layout">
-          {/* Grille */}
-          <div data-aos="fade-up">
-            <ProjetGrid url={apiUrl} />
-          </div>
-
-          {/* Sidebar */}
-          <CategoriesSidebar
-            activeCatId={activeCatId}
-            onSelect={(id) => {
-              const name = id === null ? "Tous les projets" : undefined;
-              handleSelect(id, name);
-            }}
-          />
-        </div>
       </div>
     </main>
   );

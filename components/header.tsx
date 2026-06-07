@@ -97,6 +97,15 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Overlay sombre — AVANT le nav pour être derrière lui */}
+        {mobileOpen && (
+          <div
+            className="mobile-nav-overlay"
+            onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Navigation mobile */}
         <nav
           id="mobile-nav"
@@ -120,20 +129,11 @@ export default function Header() {
             );
           })}
 
-          <Link href="/contact" className="mobile-nav-cta" tabIndex={mobileOpen ? 0 : -1}>
+          {/* <Link href="/contact" className="mobile-nav-cta" tabIndex={mobileOpen ? 0 : -1}>
             <i className="bi bi-lightning-fill" aria-hidden="true" />
             Commencer un projet
-          </Link>
+          </Link> */}
         </nav>
-
-        {/* Overlay sombre derrière le menu mobile */}
-        {mobileOpen && (
-          <div
-            className="mobile-nav-overlay"
-            onClick={() => setMobileOpen(false)}
-            aria-hidden="true"
-          />
-        )}
       </header>
     </>
   );
