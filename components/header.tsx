@@ -55,7 +55,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="logo-text" aria-label="DROH — Accueil">
-            &lt; DDM /&gt;
+            &lt; PYTH /&gt;
           </Link>
 
           {/* Navigation desktop */}
@@ -135,6 +135,7 @@ export default function Header() {
           </Link> */}
         </nav>
       </header>
+      <br/>
     </>
   );
 }

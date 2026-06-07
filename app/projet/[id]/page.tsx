@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -5,12 +6,80 @@ import { notFound } from "next/navigation";
 
 type Tech = { id: number; nom_technologie: string };
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://diomande-droh-martial.vercel.app";
+const CLOUD_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL || "https://res.cloudinary.com/darkqhocp/";
+
 async function getProjet(id: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}projet/detail/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) notFound();
   return res.json();
+}
+
+export async function generateMetadata(
+  props: { params: Promise<{ id: string }> }
+): Promise<Metadata> {
+  try {
+    const { id } = await props.params;
+    const detail = await getProjet(id);
+
+    const title = detail.titre_projet as string;
+    const rawDesc = (detail.description_projet as string) ?? "";
+    const description = rawDesc.replace(/\n+/g, " ").substring(0, 160);
+    const imageUrl = `${CLOUD_URL}${detail.image_projet}`;
+    const categories: { nom_categorie: string }[] = Array.isArray(detail.categorie_projet)
+      ? detail.categorie_projet
+      : [detail.categorie_projet];
+    const techs: Tech[] = detail.technologie ?? [];
+    const techNames = techs.map((t) => t.nom_technologie).join(", ");
+
+    return {
+      title,
+      description,
+      keywords: [
+        title,
+        "Diomande Droh Martial",
+        ...categories.map((c) => c.nom_categorie),
+        ...techs.map((t) => t.nom_technologie),
+        "projet développeur", "portfolio",
+      ],
+      alternates: { canonical: `${SITE_URL}/projet/${id}` },
+      openGraph: {
+        type: "article",
+        url: `${SITE_URL}/projet/${id}`,
+        title: `${title} — Projet de Diomande Droh Martial`,
+        description,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
+        authors: ["Diomande Droh Martial"],
+        publishedTime: detail.date_creation,
+        tags: techs.map((t) => t.nom_technologie),
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${title} — Diomande Droh Martial`,
+        description,
+        images: [imageUrl],
+      },
+      other: {
+        "article:author": "Diomande Droh Martial",
+        "article:section": categories[0]?.nom_categorie ?? "Développement",
+        "article:tag": techNames,
+      },
+    };
+  } catch {
+    return {
+      title: "Détail du projet — Diomande Droh Martial",
+      description: "Découvrez ce projet réalisé par Diomande Droh Martial, développeur Full-Stack.",
+    };
+  }
 }
 
 export default function DetailProjet(props: { params: Promise<{ id: string }> }) {
@@ -21,8 +90,33 @@ export default function DetailProjet(props: { params: Promise<{ id: string }> })
   const proprietaires = Array.isArray(detail.proprietaire) ? detail.proprietaire : [detail.proprietaire];
   const technologies: Tech[] = detail.technologie ?? [];
 
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": detail.titre_projet,
+    "description": (detail.description_projet as string)?.replace(/\n+/g, " ").substring(0, 300),
+    "url": `${SITE_URL}/projet/${id}`,
+    "image": `${CLOUD_URL}${detail.image_projet}`,
+    "dateCreated": detail.date_creation,
+    "author": {
+      "@type": "Person",
+      "name": "Diomande Droh Martial",
+      "url": SITE_URL,
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Diomande Droh Martial",
+    },
+    "genre": categories.map((c: { nom_categorie: string }) => c.nom_categorie).join(", "),
+    "keywords": technologies.map((t) => t.nom_technologie).join(", "),
+  };
+
   return (
     <main className="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
       <div className="page-title">
         <div className="container">
           <nav aria-label="breadcrumb">

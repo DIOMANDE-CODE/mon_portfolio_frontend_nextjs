@@ -6,9 +6,8 @@ import TypingText from "@/components/TypingText";
 const ROLES = [
   "Génie Logiciel",
   "Intégration IA",
-  "Architecte Web & Mobile",
-  "Infographie",
-  "Montage Vidéo"
+  "Infographe",
+  "Monteur Vidéo"
 ];
 
 const STATS = [
