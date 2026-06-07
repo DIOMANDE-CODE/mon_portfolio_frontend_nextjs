@@ -1,30 +1,24 @@
 "use client";
+
 import { useState, useEffect } from "react";
-// import { usePathname } from "next/navigation";
 import Preloader from "./Preloader";
 
-export default function PreloaderWrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-//   const pathname = usePathname();
-  const [loading, setLoading] = useState(false);
+export default function PreloaderWrapper({ children }: { children: React.ReactNode }) {
+  const [visible,  setVisible]  = useState(true);
+  const [exiting,  setExiting]  = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
+    /* Déclenche l'animation de sortie après 2.4 s */
+    const exitTimer = setTimeout(() => setExiting(true), 2400);
+    /* Retire le DOM après la fin de l'animation (0.7 s) */
+    const hideTimer = setTimeout(() => setVisible(false), 3100);
+    return () => { clearTimeout(exitTimer); clearTimeout(hideTimer); };
   }, []);
 
   return (
     <>
-      {loading && <Preloader />}
-      <div>{children}</div>
+      {visible && <Preloader exiting={exiting} />}
+      {children}
     </>
   );
 }

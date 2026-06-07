@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import useFetch from "@/hook/useFetch";
 
-interface Categorie    { id: number; nom_categorie: string; }
+interface Categorie { id: number; nom_categorie: string; }
 interface Proprietaire { id: number; nom: string; photo_profil: string; }
 interface Projet {
   id: number;
@@ -24,7 +24,7 @@ function toArray<T>(val: T | T[]): T[] {
 
 /* ── Carte projet ── */
 function ProjetCard({ projet, delay = 0 }: { projet: Projet; delay?: number }) {
-  const cats   = toArray(projet.categorie_projet);
+  const cats = toArray(projet.categorie_projet);
   const owners = toArray(projet.proprietaire);
 
   return (
@@ -192,7 +192,7 @@ function CategoriesSidebar({
 /* ── Page principale ── */
 export default function ProjetsPage() {
   const [activeCatId, setActiveCatId] = useState<number | null>(null);
-  const [activeName, setActiveName]   = useState<string>("Tous les projets");
+  const [activeName, setActiveName] = useState<string>("Tous les projets");
 
   const handleSelect = (id: number | null, name = "Tous les projets") => {
     setActiveCatId(id);
@@ -210,7 +210,7 @@ export default function ProjetsPage() {
           <nav aria-label="Fil d'Ariane">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href="/"><i className="bi bi-house" aria-hidden="true" /> Accueil</Link>
+                <Link href="/"><i className="bi bi-house" /> Accueil</Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">Mes travaux</li>
             </ol>

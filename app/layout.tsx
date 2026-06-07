@@ -16,6 +16,7 @@ import Footer from "@/components/footer";
 import AOSProvider from "@/components/AOSProvider";
 import FloatingContact from "@/components/FloatingContact";
 import MouseEffects from "@/components/MouseEffects";
+import PreloaderWrapper from "@/components/PreloaderWrapper";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -43,12 +44,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
+      <head>
+        {/* Préconnexions aux domaines critiques — réduit la latence DNS + TLS */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://monportofoliobackend.up.railway.app" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://monportofoliobackend.up.railway.app" />
+      </head>
       <body className={`${roboto.variable} ${poppins.variable}`}>
-        <AOSProvider>
-          <Header />
-          {children}
-        </AOSProvider>
-        <Footer />
+        <PreloaderWrapper>
+          <AOSProvider>
+            <Header />
+            {children}
+          </AOSProvider>
+          <Footer />
+        </PreloaderWrapper>
 
         {/* ── Boutons flottants animés ── */}
         <FloatingContact />

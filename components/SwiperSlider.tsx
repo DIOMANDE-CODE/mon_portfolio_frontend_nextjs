@@ -64,6 +64,8 @@ export default function SwiperSlider() {
                 height={340}
                 src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}${cat.image_categorie}`}
                 alt={cat.nom_categorie}
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               {/* Overlay au hover */}
               <div className="service-slide-img-overlay" />
