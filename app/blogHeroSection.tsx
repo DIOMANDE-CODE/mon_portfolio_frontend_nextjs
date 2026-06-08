@@ -6,8 +6,8 @@ import TypingText from "@/components/TypingText";
 const ROLES = [
   "Génie Logiciel",
   "Intégration IA",
-  "Infographe",
-  "Monteur Vidéo"
+  "Infographie",
+  "Montage Vidéo"
 ];
 
 const STATS = [
@@ -52,11 +52,15 @@ export default function BlogHeroSection() {
             <div className="hero-actions">
               <Link href="/projet" className="btn-primary-dark">
                 <i className="bi bi-folder2-open" />
-                Mes réalisations
+                Mes travaux
               </Link>
               <Link href="/profil" className="btn-outline-dark">
                 <i className="bi bi-person-fill" />
                 Mon Profil
+              </Link>
+              <Link href="/visuel" className="btn-warm-dark">
+                <i className="bi bi-palette2" />
+                Mes visuels
               </Link>
             </div>
 
@@ -71,7 +75,7 @@ export default function BlogHeroSection() {
               </span>
               <span className="hero-mini-badge">
                 <i className="bi bi-shield-check" style={{ color: "#22c55e" }} />
-                Sécurité
+                Professionnalisme
               </span>
             </div>
 

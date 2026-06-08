@@ -158,7 +158,7 @@ export default function AuthorInfo() {
             {/* Badge flottant bas-gauche */}
             <div className="profil-stat-badge bottom-left">
               <span className="profil-stat-num">{author.nombre_recompense}</span>
-              <span className="profil-stat-lbl">Récompense</span>
+              <span className="profil-stat-lbl">Récompenses</span>
             </div>
 
             {/* Photo portrait */}

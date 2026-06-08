@@ -174,6 +174,29 @@ section { padding: 5rem 0; }
   color: var(--accent-cyan) !important;
 }
 
+.btn-warm-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.85rem;
+  background: linear-gradient(135deg, rgba(232, 160, 69, 0.15), rgba(232, 160, 69, 0.06));
+  color: var(--accent-warm) !important;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(232, 160, 69, 0.35);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.btn-warm-dark:hover {
+  background: rgba(232, 160, 69, 0.18);
+  border-color: rgba(232, 160, 69, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(232, 160, 69, 0.15);
+  color: var(--accent-warm) !important;
+}
+
 /* === 7. CARDS ================================================= */
 .dark-card {
   background: var(--bg-card);
@@ -4066,7 +4089,7 @@ section { padding: 5rem 0; }
   .hero-role-line { font-size: clamp(1rem, 4vw, 1.4rem); min-height: 2rem; }
   .hero-desc { font-size: 0.9rem; margin-bottom: 1.75rem; }
   .hero-actions { gap: 0.75rem; }
-  .btn-primary-dark, .btn-outline-dark { padding: 0.7rem 1.4rem; font-size: 0.85rem; }
+  .btn-primary-dark, .btn-outline-dark, .btn-warm-dark { padding: 0.7rem 1.4rem; font-size: 0.85rem; }
   .hero-badges-row { gap: 0.5rem; margin-top: 1.25rem; }
   .hero-mini-badge { font-size: 0.74rem; }
 
@@ -4122,7 +4145,7 @@ section { padding: 5rem 0; }
 @media (max-width: 480px) {
   .hero-name { font-size: 1.6rem; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
-  .btn-primary-dark, .btn-outline-dark { width: 100%; justify-content: center; }
+  .btn-primary-dark, .btn-outline-dark, .btn-warm-dark { width: 100%; justify-content: center; }
 
   .author-stats-grid { grid-template-columns: 1fr 1fr; }
   .social-icons-row { gap: 0.4rem; }

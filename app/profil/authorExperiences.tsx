@@ -195,9 +195,9 @@ const RECOMPENSES: Recompense[] = [
   },
   {
     dateDebut: "2022",
-    title: "TSEMINAIRE NATIONAL NYLS DIVO 2022",
+    title: "SEMINAIRE NATIONAL NYLS DIVO 2022",
     organizer: "AIESEC CÔTE D'IVOIRE",
-    result: "Meilleur membre comité d'organisation",
+    result: "Meilleur membre du comité d'organisation",
     description:
       "Participation en tant que responsable marketing et communication durant l'organisation du séminaire.",
     tags: ["Leadership", "Travail"],
@@ -226,7 +226,7 @@ const GITHUB_REPOS: GithubRepo[] = [
   },
   {
     name: "Kôkô Ticket",
-    description: "Dévéloppement d'une application de commande de ticket évènementiel (Ex: Concert, Seminaire, Conférence, etc...).",
+    description: "Dévéloppement d'une application de commande de ticket évènementiel en ligne (Ex: Concert, Seminaire, Conférence, etc...).",
     url: "#",
     language: "Django, NextJS, Docker, CI/CD, FastAPI",
     languageColor: "#3178c6",
