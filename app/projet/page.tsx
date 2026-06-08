@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import useFetch from "@/hook/useFetch";
+import { formatPeriodeFR } from "@/utils/dateUtils";
 
 interface Categorie    { id: number; nom_categorie: string; }
 interface Proprietaire { id: number; nom: string; photo_profil: string; }
@@ -12,6 +13,7 @@ interface Projet {
   titre_projet: string;
   categorie_projet: Categorie[];
   date_debut: string;
+  date_fin?: string;
   image_projet: string;
   proprietaire: Proprietaire[];
 }
@@ -78,7 +80,7 @@ function ProjetCard({ projet, delay = 0 }: { projet: Projet; delay?: number }) {
               <div className="owner-info-text">{owner.nom}</div>
               <div className="owner-date">
                 <i className="bi bi-calendar3 owner-date-icon" aria-hidden="true" />
-                {projet.date_debut}
+                {formatPeriodeFR(projet.date_debut, projet.date_fin)}
               </div>
             </div>
           </div>

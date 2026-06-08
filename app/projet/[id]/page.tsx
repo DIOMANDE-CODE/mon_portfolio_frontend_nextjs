@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
 import { notFound } from "next/navigation";
+import { formatPeriodeFR, formatDateFR } from "@/utils/dateUtils";
 
 type Tech = { id: number; nom_technologie: string };
 
@@ -188,11 +189,9 @@ export default function DetailProjet(props: { params: Promise<{ id: string }> })
                 ))}
                 <div className="detail-date">
                   <i className="bi bi-calendar3" />
-                  {new Date(detail.date_creation).toLocaleDateString("fr-FR", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {detail.date_debut
+                    ? formatPeriodeFR(detail.date_debut, detail.date_fin, true)
+                    : formatDateFR(detail.date_creation, true)}
                 </div>
               </div>
 

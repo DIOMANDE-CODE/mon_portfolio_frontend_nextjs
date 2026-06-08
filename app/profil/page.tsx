@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AuthorInfo from "./authorInfo";
 import AuthorContent from "./authorContent";
+import AuthorExperiences from "./authorExperiences";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://diomandedroh.vercel.app";
 
@@ -47,6 +48,11 @@ export default function ProfilPage() {
           <AuthorContent />
         </div>
       </section>
+
+      {/* ── Section expériences ── */}
+      <div className="container">
+        <AuthorExperiences />
+      </div>
     </main>
   );
 }

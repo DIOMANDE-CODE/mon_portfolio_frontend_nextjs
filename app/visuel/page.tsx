@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation, Autoplay, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import useFetch from "@/hook/useFetch";
+import { formatDateFR } from "@/utils/dateUtils";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -165,9 +166,7 @@ export default function Visuel() {
                         </div>
                         <p className="visuel-card-overlay-title">{crea.titre_visuel}</p>
                         <span className="visuel-card-overlay-date">
-                          {new Date(crea.date_creation).toLocaleDateString("fr-FR", {
-                            month: "short", year: "numeric",
-                          })}
+                          {formatDateFR(crea.date_creation)}
                         </span>
                       </div>
                     </div>

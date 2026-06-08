@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://diomande-droh-martial.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://diomandedroh.vercel.app";
 
 export const metadata: Metadata = {
   title: "Contact — Travailler avec Diomande Droh Martial",
