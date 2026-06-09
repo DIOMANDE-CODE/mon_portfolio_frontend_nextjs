@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
@@ -20,8 +20,8 @@ const CONTACT_INFO = [
   {
     icon: "bi-envelope-fill",
     title: "Email",
-    lines: ["chezpyth@gmail.com"],
-    href: "mailto:chezpyth@gmail.com",
+    lines: ["diomandedroh79@gmail.com"],
+    href: "mailto:diomandedroh79@gmail.com",
   },
 ];
 

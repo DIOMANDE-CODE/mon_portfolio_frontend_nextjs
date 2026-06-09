@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 
@@ -66,7 +66,7 @@ export default function FloatingContact() {
         <span className="floating-ring ring-email" aria-hidden="true" />
         <a
           ref={emailRef}
-          href="mailto:chezpyth@gmail.com"
+          href="mailto:diomandedroh79@gmail.com"
           className="floating-btn floating-email"
           aria-label="Envoyer un email"
           title="Email"

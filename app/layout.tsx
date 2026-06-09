@@ -160,6 +160,7 @@ const personJsonLd = {
       "image": `${SITE_URL}/assets/img/person/profil.jpg`,
       "sameAs": [
         "https://github.com/DIOMANDE-CODE",
+        "https://linkedin.com/in/diomande-droh-martial-a48005244",
       ],
       "knowsAbout": [
         "React.js", "Next.js", "Python", "Django", "JavaScript", "TypeScript",

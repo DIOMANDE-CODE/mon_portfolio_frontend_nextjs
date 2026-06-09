@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const EXPERTISES = [
   "Développement Web Full-Stack",
@@ -45,9 +45,9 @@ export default function Footer() {
               </li>
               <li>
                 <i className="bi bi-envelope footer-icon" aria-hidden="true" />
-                <a href="mailto:chezpyth@gmail.com" target="_blank"
+                <a href="mailto:diomandedroh79@gmail.com" target="_blank"
                   rel="noopener noreferrer" className="footer-contact-link">
-                  chezpyth@gmail.com
+                  diomandedroh79@gmail.com
                 </a>
               </li>
             </ul>
@@ -85,6 +85,22 @@ export default function Footer() {
         </div>
 
         <hr className="footer-divider" />
+
+        {/* Icônes sociales */}
+        <div className="footer-socials">
+          <a href="https://github.com/DIOMANDE-CODE" target="_blank" rel="noreferrer" className="footer-social-btn" title="GitHub" aria-label="GitHub">
+            <i className="bi bi-github" />
+          </a>
+          <a href="https://linkedin.com/in/diomande-droh-martial-a48005244" target="_blank" rel="noreferrer" className="footer-social-btn" title="LinkedIn" aria-label="LinkedIn">
+            <i className="bi bi-linkedin" />
+          </a>
+          <a href="mailto:diomandedroh79@gmail.com" className="footer-social-btn" title="Email" aria-label="Email">
+            <i className="bi bi-envelope-fill" />
+          </a>
+          <a href="https://wa.me/2250595031694" target="_blank" rel="noreferrer" className="footer-social-btn" title="WhatsApp" aria-label="WhatsApp">
+            <i className="bi bi-whatsapp" />
+          </a>
+        </div>
 
         {/* <div className="footer-bottom">
           <p className="footer-copy">

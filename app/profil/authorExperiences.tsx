@@ -193,15 +193,6 @@ const RECOMPENSES: Recompense[] = [
       "Participation en tant que coach lors du hackathon TECHNOVORE organisé par l'ESATIC. L'équipe encadrée a décroché le premier prix de la compétition.",
     tags: ["Hackathon", "Coach", "Innovation", "Tech"],
   },
-  {
-    dateDebut: "2022",
-    title: "SEMINAIRE NATIONAL NYLS DIVO 2022",
-    organizer: "AIESEC CÔTE D'IVOIRE",
-    result: "Meilleur membre du comité d'organisation",
-    description:
-      "Participation en tant que responsable marketing et communication durant l'organisation du séminaire.",
-    tags: ["Leadership", "Travail"],
-  },
   /* Ajoute d'autres récompenses ici */
 ];
 

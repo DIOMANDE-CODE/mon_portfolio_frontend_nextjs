@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -76,7 +76,7 @@ export default function AuthorInfo() {
                   <span className="profil-contact-icon">
                     <i className="bi bi-envelope-fill" />
                   </span>
-                  <span>chezpyth@gmail.com</span>
+                  <span>diomandedroh79@gmail.com</span>
                 </div>
                 <div className="profil-contact-item">
                   <span className="profil-contact-icon">
@@ -124,11 +124,15 @@ export default function AuthorInfo() {
                   <i className="bi bi-github" />
                 </Link>
               )}
-              {author.lien_linkedin && (
-                <Link href={author.lien_linkedin} target="_blank" rel="noreferrer" className="social-icon-btn" title="LinkedIn">
-                  <i className="bi bi-linkedin" />
-                </Link>
-              )}
+              <Link
+                href={author.lien_linkedin || "https://linkedin.com/in/diomande-droh-martial-a48005244"}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-btn"
+                title="LinkedIn"
+              >
+                <i className="bi bi-linkedin" />
+              </Link>
               {author.lien_instagram && (
                 <Link href={author.lien_instagram} target="_blank" rel="noreferrer" className="social-icon-btn" title="Instagram">
                   <i className="bi bi-instagram" />
@@ -158,7 +162,7 @@ export default function AuthorInfo() {
             {/* Badge flottant bas-gauche */}
             <div className="profil-stat-badge bottom-left">
               <span className="profil-stat-num">{author.nombre_recompense}</span>
-              <span className="profil-stat-lbl">Récompenses</span>
+              <span className="profil-stat-lbl">Récompense</span>
             </div>
 
             {/* Photo portrait */}
