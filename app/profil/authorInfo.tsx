@@ -76,7 +76,7 @@ export default function AuthorInfo() {
                   <span className="profil-contact-icon">
                     <i className="bi bi-envelope-fill" />
                   </span>
-                  <span>diomandedroh79@gmail.com</span>
+                  <span>diomandedrohmartial01@gmail.com</span>
                 </div>
                 <div className="profil-contact-item">
                   <span className="profil-contact-icon">

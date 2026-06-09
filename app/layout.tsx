@@ -156,7 +156,7 @@ const personJsonLd = {
       "description":
         "Ingénieur logiciel et développeur Full-Stack spécialisé en développement web et mobile (React, Next.js, Python, Django) ainsi qu'en intégration de solutions d'intelligence artificielle.",
       "url": SITE_URL,
-      "email": "diomandedroh79@gmail.com",
+      "email": "diomandedrohmartial01@gmail.com",
       "image": `${SITE_URL}/assets/img/person/profil.jpg`,
       "sameAs": [
         "https://github.com/DIOMANDE-CODE",

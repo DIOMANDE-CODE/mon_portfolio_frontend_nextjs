@@ -20,8 +20,8 @@ const CONTACT_INFO = [
   {
     icon: "bi-envelope-fill",
     title: "Email",
-    lines: ["diomandedroh79@gmail.com"],
-    href: "mailto:diomandedroh79@gmail.com",
+    lines: ["diomandedrohmartial01@gmail.com"],
+    href: "mailto:diomandedrohmartial01@gmail.com",
   },
 ];
 

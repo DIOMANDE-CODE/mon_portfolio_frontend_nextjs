@@ -45,9 +45,9 @@ export default function Footer() {
               </li>
               <li>
                 <i className="bi bi-envelope footer-icon" aria-hidden="true" />
-                <a href="mailto:diomandedroh79@gmail.com" target="_blank"
+                <a href="mailto:diomandedrohmartial01@gmail.com" target="_blank"
                   rel="noopener noreferrer" className="footer-contact-link">
-                  diomandedroh79@gmail.com
+                  diomandedrohmartial01@gmail.com
                 </a>
               </li>
             </ul>
@@ -94,7 +94,7 @@ export default function Footer() {
           <a href="https://linkedin.com/in/diomande-droh-martial-a48005244" target="_blank" rel="noreferrer" className="footer-social-btn" title="LinkedIn" aria-label="LinkedIn">
             <i className="bi bi-linkedin" />
           </a>
-          <a href="mailto:diomandedroh79@gmail.com" className="footer-social-btn" title="Email" aria-label="Email">
+          <a href="mailto:diomandedrohmartial01@gmail.com" className="footer-social-btn" title="Email" aria-label="Email">
             <i className="bi bi-envelope-fill" />
           </a>
           <a href="https://wa.me/2250595031694" target="_blank" rel="noreferrer" className="footer-social-btn" title="WhatsApp" aria-label="WhatsApp">
