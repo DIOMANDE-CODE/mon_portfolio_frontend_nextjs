@@ -27,9 +27,9 @@ const DOMAINS = [
   "Développement Web",
   "Développement Mobile",
   "Intelligence Artificielle",
-  "Architecture Logicielle",
-  "UI / UX Design",
-  "DevOps & Cloud",
+  "Communication visuelle",
+  "Montage Vidéo",
+  "Infographie",
 ];
 
 function chipColor(name: string): string {
@@ -130,7 +130,7 @@ export default function AuthorContent() {
 
               {/* Domaines */}
               <div>
-                <h3 className="profil-card-title">Domaines d&apos;expertise</h3>
+                <h3 className="profil-card-title">Domaines d&apos;interventions</h3>
                 <div className="profil-domains-grid">
                   {DOMAINS.map((d, i) => (
                     <div className="profil-domain-item" key={i}>
