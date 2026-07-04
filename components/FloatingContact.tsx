@@ -50,11 +50,11 @@ export default function FloatingContact() {
         <span className="floating-ring" aria-hidden="true" />
         <a
           ref={waRef}
-          href="https://wa.me/2250595031694"
+          href="https://wa.me/2250711399567"
           target="_blank"
           rel="noreferrer"
           className="floating-btn floating-whatsapp"
-          aria-label="Contacter sur WhatsApp"
+          aria-label="Contactez-moi sur WhatsApp"
           title="WhatsApp"
         >
           <i className="bi bi-whatsapp" aria-hidden="true" />
